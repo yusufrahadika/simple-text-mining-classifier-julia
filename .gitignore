@@ -1,0 +1,9 @@
+# MacOS dump files
+.DS_Store
+._*
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
