@@ -1,16 +1,9 @@
-"""
-# module preprocessing
-
+#=
+preprocessing:
 - Julia version:
 - Author: yusufrahadika
 - Date: 2019-11-14
-
-# Examples
-
-```jldoctest
-julia>
-```
-"""
+=#
 
 module Preprocessing
 export cleaning, case_folding, tokenisasi, filtering, stemming, preprocess
@@ -18,7 +11,7 @@ export cleaning, case_folding, tokenisasi, filtering, stemming, preprocess
     StemmerFactory = pyimport("Sastrawi.Stemmer.StemmerFactory").StemmerFactory
     factory = StemmerFactory()
     stemmer = factory.create_stemmer()
-    stopwords = split(read(open("../data/stopword-list.txt", "r"), String), "\n")
+    stopwords = split(read("../data/stopword-list.txt", String), "\n")
 
     function cleaning(source::String)
         stripped_source::String = strip(source)
