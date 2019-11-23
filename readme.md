@@ -13,22 +13,21 @@ Example of directory structure.
 │   │   └── *.txt
 │   ├── class3
 │   │   └── *.txt
-│   └── class4
+│   └── class*
 │       └── *.txt
-├── Data uji
-│   ├── class1
-│   │   └── *.txt
-│   ├── class2
-│   │   └── *.txt
-│   ├── class3
-│   │   └── *.txt
-│   └─── class4
-│       └── *.txt
+└── Data uji
+    ├── class1
+    │   └── *.txt
+    ├── class2
+    │   └── *.txt
+    ├── class3
+    │   └── *.txt
+    └─── class*
+        └── *.txt
 ```
 
 
 ## List of Features
-[x] Naive-bayes with Laplace smoothing
-[ ] Rocchio
-[ ] KNN
-
+- [x] Naive-bayes with Laplace smoothing
+- [x] Rocchio
+- [x] KNN
