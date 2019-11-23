@@ -29,5 +29,5 @@ Example of directory structure.
 
 ## List of Features
 - [x] Naive-bayes with Laplace smoothing
-- [x] Rocchio
-- [x] KNN
+- [ ] Rocchio
+- [ ] KNN
