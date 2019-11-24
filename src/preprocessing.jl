@@ -11,7 +11,7 @@ export cleaning, case_folding, tokenisasi, filtering, stemming, preprocess
     StemmerFactory = pyimport("Sastrawi.Stemmer.StemmerFactory").StemmerFactory
     factory = StemmerFactory()
     stemmer = factory.create_stemmer()
-    stopwords = split(read("../data/stopword-list.txt", String), "\n")
+    stopwords = split(read(string(@__DIR__, "/../data/stopword-list.txt"), String), "\n")
 
     function cleaning(source::String)::String
         stripped_source::String = strip(source)

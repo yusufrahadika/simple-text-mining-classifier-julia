@@ -30,10 +30,10 @@ function train(classification::Classification, file_names::Array{String, 1}, fil
     class_count = length(classification.unique_file_classes)
     count_word_per_class = zeros(Int64, (feature_count, class_count))
 
-    for (class, document) in zip(classification.file_classes, classification.weighting_instance.documents)
+    for (document_index, (class, document)) in enumerate(zip(classification.file_classes, classification.weighting_instance.documents))
         column_index = findfirst(isequal(class), classification.unique_file_classes)
         for (row_index, feature) in enumerate(classification.weighting_instance.features)
-            count_word_per_class[row_index, column_index] += count(word -> word == feature, document)
+            count_word_per_class[row_index, column_index] += classification.weighting_instance.tf[row_index, document_index]
         end
     end
 
