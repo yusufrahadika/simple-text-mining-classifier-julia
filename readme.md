@@ -31,3 +31,7 @@ Example of directory structure.
 - [x] Naive-bayes with Laplace smoothing
 - [ ] Rocchio
 - [ ] KNN
+
+
+## Known Bugs
+- Inconsistent char index when data contains character besides UTF-8

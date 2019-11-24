@@ -13,7 +13,7 @@ export cleaning, case_folding, tokenisasi, filtering, stemming, preprocess
     stemmer = factory.create_stemmer()
     stopwords = split(read("../data/stopword-list.txt", String), "\n")
 
-    function cleaning(source::String)
+    function cleaning(source::String)::String
         stripped_source::String = strip(source)
         stripped_source = replace(stripped_source, r"[\S]+\.(net|com|org|info|edu|gov|uk|de|ca|jp|fr|au|us|ru|ch|it|nel|se|no|es|mil)[\S]*\s?" => s" ")
 
@@ -22,7 +22,7 @@ export cleaning, case_folding, tokenisasi, filtering, stemming, preprocess
         source_last_char_index::Int64 = length(stripped_source)
         for (charindex, char) in enumerate(stripped_source)
             if (ispunct(char) || isdigit(char))
-                if (charindex != source_last_char_index)
+                if (charindex < source_last_char_index)
                     next_char::Char = stripped_source[charindex + 1]
                     if (!ispunct(next_char) && !isdigit(next_char) && next_char != " ")
                         result = string(result, " ")
@@ -36,23 +36,23 @@ export cleaning, case_folding, tokenisasi, filtering, stemming, preprocess
         return result
     end
 
-    function case_folding(source::String)
+    function case_folding(source::String)::String
         return lowercase(source)
     end
 
-    function tokenisasi(source::String)
+    function tokenisasi(source::String)::Array{String, 1}
         return split(source)
     end
 
-    function filtering(source::Array)
+    function filtering(source::Array{String, 1})::Array{String, 1}
        return [word for word in source if !(word in stopwords)]
     end
 
-    function stemming(source::Array)
-        return [stemmer.stem(word) for word in source if isascii(word)]
+    function stemming(source::Array{String, 1})::Array{String, 1}
+        return [stemmer.stem(word) for word in source if isascii(word) && length(word) > 0]
     end
 
-    function preprocess(source::String)
+    function preprocess(source::String)::Array{String, 1}
         return stemming(filtering(tokenisasi(case_folding(cleaning(source)))))
     end
 end
